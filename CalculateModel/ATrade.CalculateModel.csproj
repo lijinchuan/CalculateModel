@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{747E73F3-1E32-4349-B6D0-36D6625A5183}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ATrade.CalculateModel</RootNamespace>
+    <AssemblyName>ATrade.CalculateModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ATrade.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Data\Data\bin\Debug\ATrade.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="ATrade.Quote, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lib\Other\ATrade.Quote.dll</HintPath>
+    </Reference>
+    <Reference Include="LJC.FrameWork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LJC.FrameWork\LJC.FrameWork\bin\Release\LJC.FrameWork.dll</HintPath>
+    </Reference>
+    <Reference Include="Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\投资机器人3.0测试版本\ATrade_gx\Server\bin\Release\Server.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TradeBusiness, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TradeBusiness\TradeBusiness\bin\Debug\TradeBusiness.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Book\UseBook.cs" />
+    <Compile Include="OperatorFunction\Buy.cs" />
+    <Compile Include="OperatorFunction\OperatorResult.cs" />
+    <Compile Include="OperatorFunction\Sell.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockDataCalPool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StockFunction\Abs.cs" />
+    <Compile Include="StockFunction\C.cs" />
+    <Compile Include="StockFunction\HF.cs" />
+    <Compile Include="StockFunction\High.cs" />
+    <Compile Include="StockFunction\ISHOLD.cs" />
+    <Compile Include="StockFunction\LF.cs" />
+    <Compile Include="StockFunction\Low.cs" />
+    <Compile Include="StockFunction\MA.cs" />
+    <Compile Include="StockFunction\Max.cs" />
+    <Compile Include="StockFunction\Min.cs" />
+    <Compile Include="StockFunction\Profit.cs" />
+    <Compile Include="StockFunction\SAR.cs" />
+    <Compile Include="StockFunction\StockFun.cs" />
+    <Compile Include="StockFunction\Sum.cs" />
+    <Compile Include="StockFunction\Today.cs" />
+    <Compile Include="StockFunction\V.cs" />
+    <Compile Include="StockFunction\O.cs" />
+    <Compile Include="StockFunction\A.cs" />
+    <Compile Include="StockFunction\HHV.cs" />
+    <Compile Include="StockFunction\LLV.cs" />
+    <Compile Include="StockFunction\EMA.cs" />
+    <Compile Include="StockFunction\SMA.cs" />
+    <Compile Include="StockFunction\REF.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

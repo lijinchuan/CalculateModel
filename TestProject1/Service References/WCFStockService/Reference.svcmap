@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7434b794-26d5-4740-a7ea-8a7181ab9053" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/StockService/StockService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="StockService.xsd" MetadataType="Schema" ID="12dec083-7f30-4d62-ae4d-edf8c77c9bed" SourceId="1" SourceUrl="http://localhost/StockService/StockService.svc?xsd=xsd3" />
+    <MetadataFile FileName="StockService.disco" MetadataType="Disco" ID="4e9db5df-c4ed-47d6-82cb-95689d20c496" SourceId="1" SourceUrl="http://localhost/StockService/StockService.svc?disco" />
+    <MetadataFile FileName="StockService1.xsd" MetadataType="Schema" ID="bc68e039-9431-42b8-9258-9a464010d344" SourceId="1" SourceUrl="http://localhost/StockService/StockService.svc?xsd=xsd0" />
+    <MetadataFile FileName="StockService2.xsd" MetadataType="Schema" ID="3fe6f733-807f-4279-be4c-a1e68761c162" SourceId="1" SourceUrl="http://localhost/StockService/StockService.svc?xsd=xsd1" />
+    <MetadataFile FileName="StockService3.xsd" MetadataType="Schema" ID="dfcc4092-552d-418e-91c7-ed33967fbaf5" SourceId="1" SourceUrl="http://localhost/StockService/StockService.svc?xsd=xsd4" />
+    <MetadataFile FileName="StockService.wsdl" MetadataType="Wsdl" ID="bb09bc9e-bf60-4658-bab6-c5f3e166cee5" SourceId="1" SourceUrl="http://localhost/StockService/StockService.svc?wsdl" />
+    <MetadataFile FileName="StockService4.xsd" MetadataType="Schema" ID="78294333-ea1e-49db-8f20-422523d21a32" SourceId="1" SourceUrl="http://localhost/StockService/StockService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ATrade.CalculateModel</RootNamespace>
     <AssemblyName>ATrade.CalculateModel</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -40,19 +42,19 @@
   <ItemGroup>
     <Reference Include="ATrade.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Data\Data\bin\Debug\ATrade.Data.dll</HintPath>
+      <HintPath>..\..\..\GitHub\ATrade3.0\ATUI2.0\ATradeUI2.0\bin\Release\ATrade.Data.dll</HintPath>
     </Reference>
     <Reference Include="ATrade.Quote, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Lib\Other\ATrade.Quote.dll</HintPath>
+      <HintPath>..\..\..\GitHub\ATrade3.0\ATUI2.0\ATradeUI2.0\bin\Release\ATrade.Quote.dll</HintPath>
     </Reference>
     <Reference Include="LJC.FrameWork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\LJC.FrameWork\LJC.FrameWork\bin\Release\LJC.FrameWork.dll</HintPath>
+      <HintPath>..\..\..\GitHub\LJC.FrameWork\LJC.FrameWork\bin\Release\LJC.FrameWork.dll</HintPath>
     </Reference>
     <Reference Include="Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\投资机器人3.0测试版本\ATrade_gx\Server\bin\Release\Server.dll</HintPath>
+      <HintPath>..\..\..\GitHub\ATrade3.0\ATUI2.0\ATradeUI2.0\bin\Release\Server.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,7 +65,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="TradeBusiness, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TradeBusiness\TradeBusiness\bin\Debug\TradeBusiness.dll</HintPath>
+      <HintPath>..\..\..\GitHub\ATrade3.0\ATUI2.0\ATradeUI2.0\bin\Release\TradeBusiness.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

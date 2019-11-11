@@ -43,14 +43,14 @@ namespace ATrade.CalculateModel
             if (!this.CurrStockDataCalPool.IsTestMode)
             {
                 if (cmd.EffDate == TradeCalanderServer.NextOpenTime(DateTime.Now).Date)
-                    DataContextMoudelFactory<StockCmd>.GetDataContext(cmd).Add();
+                    LocalDB.AddStockCmd(cmd);
                 //result.Result = true;
             }
             else
             {
                 if (CalCurrent.CurrentIndex < CurrStockDataCalPool.Quotes.Length - 60)
                 {
-                    new TestBusiness().SetTradeTime(CurrQuote.Time).Order(StockOrderSide.sell, 0, CurrStockDataCalPool.Stock, 0, CurrQuote.Close, false);
+                    (CurrStockDataCalPool.BusiRequest as TestBusiness).SetTradeTime(CurrQuote.Time).Order(StockOrderSide.sell, 0, CurrStockDataCalPool.Stock, 0, CurrQuote.Close, false);
                 }
             }
 
@@ -62,7 +62,7 @@ namespace ATrade.CalculateModel
                     OperatorType = "S",
                     Time=CurrQuote.Time,
                     //因为是延迟一个交易日
-                    Price=CurrQuote.Close
+                    Price=(double)CurrQuote.Close
                 }
             };
 

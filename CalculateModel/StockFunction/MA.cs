@@ -35,9 +35,9 @@ namespace ATrade.CalculateModel
             for (int i = 0; i < data.Length; i++)
             {
                 if (i < data.Length - count)
-                    result[i] = data.Skip(i).Take(count).Sum(c => (decimal)c) / count;
+                    result[i] = data.Skip(i).Take(count).Sum(c => (double)c) / count;
                 else
-                    result[i] = 0M;
+                    result[i] = 0d;
             }
 
             return new CalResult

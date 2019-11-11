@@ -29,7 +29,7 @@ namespace ATrade.CalculateModel
                 object[] o = new object[CurrStockDataCalPool.Quotes.Length];
 
                 int lastIndex = CurrStockDataCalPool.Quotes.Length - 3;
-                decimal fxPrice = CurrStockDataCalPool.Quotes[lastIndex].Low;
+                double fxPrice = CurrStockDataCalPool.Quotes[lastIndex].Low;
                 //是否有效
                 bool isValid = false;
 
@@ -38,7 +38,7 @@ namespace ATrade.CalculateModel
                     //倒数第三天才有
                     if (i > CurrStockDataCalPool.Quotes.Length - 3)
                     {
-                        o[i] = 0M;
+                        o[i] = 0d;
                         continue;
                     }
 
@@ -73,7 +73,7 @@ namespace ATrade.CalculateModel
                     }
                     else
                     {
-                        o[i] = 0M;
+                        o[i] = 0d;
                     }
                 }
 
@@ -89,7 +89,7 @@ namespace ATrade.CalculateModel
             {
                 result.Results = valueCach;
             }
-            result.ResultType = typeof(decimal);
+            result.ResultType = typeof(double);
 
             return result;
         }

@@ -29,7 +29,7 @@ namespace ATrade.CalculateModel
                 object[] o = new object[CurrStockDataCalPool.Quotes.Length];
 
                 int lastIndex = CurrStockDataCalPool.Quotes.Length - 3;
-                decimal fxPrice = CurrStockDataCalPool.Quotes[lastIndex].High;
+                double fxPrice = CurrStockDataCalPool.Quotes[lastIndex].High;
                 //是否有效
                 bool isValid = false;
 
@@ -38,13 +38,13 @@ namespace ATrade.CalculateModel
                     //倒数第三天才有
                     if (i > CurrStockDataCalPool.Quotes.Length - 3)
                     {
-                        o[i] = decimal.MaxValue;
+                        o[i] = double.MaxValue;
                         continue;
                     }
 
                     for (int j = lastIndex - 1; j > i + 2; j--)
                     {
-                        if (CurrStockDataCalPool.Quotes[j].High > fxPrice)
+                        if ((double)CurrStockDataCalPool.Quotes[j].High > fxPrice)
                         {
                             //旧的分形被突破
                             isValid = false;
@@ -56,7 +56,7 @@ namespace ATrade.CalculateModel
                               && CurrStockDataCalPool.Quotes[j].High >= CurrStockDataCalPool.Quotes[j + 2].High)
                         {
                             //新的分形诞生
-                            fxPrice = CurrStockDataCalPool.Quotes[j].High;
+                            fxPrice = (double)CurrStockDataCalPool.Quotes[j].High;
                             lastIndex = j;
                             isValid = true;
                         }
@@ -73,7 +73,7 @@ namespace ATrade.CalculateModel
                     }
                     else
                     {
-                        o[i] = decimal.MaxValue;
+                        o[i] = double.MaxValue;
                     }
                 }
 
@@ -90,7 +90,7 @@ namespace ATrade.CalculateModel
             {
                 result.Results = valueCach;
             }
-            result.ResultType = typeof(decimal);
+            result.ResultType = typeof(double);
 
             return result;
         }

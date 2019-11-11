@@ -28,11 +28,11 @@ namespace ATrade.CalculateModel
             if (param2 == null)
             {
                 object[] p1 = (object[])param1;
-                decimal sumTotal = 0M;
+                double sumTotal = 0;
                 results = new object[p1.Length];
                 for (int i = p1.Length - 1; i >= 0; i--)
                 {
-                    sumTotal += p1[i].ToDecimal();
+                    sumTotal += p1[i].ToDouble();
                     results[i] = sumTotal;
                 }
             }
@@ -47,52 +47,52 @@ namespace ATrade.CalculateModel
                         object[] p2 = (object[])param2;
                         for (int i = 0; i < p1.Length; i++)
                         {
-                            results[i] = p1[i].ToDecimal() + p2[i].ToDecimal();
+                            results[i] = p1[i].ToDouble() + p2[i].ToDouble();
                         }
                     }
                     else
                     {
-                        decimal p2 = ((object)param2).ToDecimal();
+                        double p2 = param2.ToDouble();
                         for (int i = 0; i < p1.Length; i++)
                         {
-                            results[i] = p1[i].ToDecimal() + p2;
+                            results[i] = p1[i].ToDouble() + p2;
                         }
                     }
                 }
                 else
                 {
-                    decimal p1 = ((object)param1).ToDecimal();
+                    double p1 = param1.ToDouble();
                     object[] p2 = (object[])param2;
                     results=new object[p2.Length];
                     for (int i = 0; i < p2.Length; i++)
                     {
-                        results[i] = p1.ToDecimal() + p2[i].ToDecimal();
+                        results[i] = p1.ToDouble() + p2[i].ToDouble();
                     }
                 }
             }
 
             return new CalResult
             {
-                ResultType=typeof(decimal),
+                ResultType=typeof(double),
                 Results=results
             };
         }
 
         protected override CalResult SingOperate()
         {
-            decimal total = 0M;
+            double total = 0;
             for (int i = 0; i < int.MaxValue; i++)
             {
                 object o = GetPara(i);
                 if (o == null)
                     break;
-                total += o.ToDecimal();
+                total += o.ToDouble();
             }
 
             return new CalResult
             {
                 Result = total.ToString(),
-                ResultType = typeof(decimal)
+                ResultType = typeof(double)
             };
         }
     }

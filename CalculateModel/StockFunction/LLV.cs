@@ -31,38 +31,38 @@ namespace ATrade.CalculateModel
             if (count < 1)
                 return null;
 
-            decimal llow = decimal.MaxValue;
+            double llow = double.MaxValue;
             object[] result=new object[data.Length];
 
             for (int i = 0; i < data.Length; i++)
             {
                 
-                if ((decimal)data[i] < llow)
+                if ((double)data[i] < llow)
                 {
-                    llow = (decimal)data[i];
+                    llow = (double)data[i];
                 }
 
                 if (i>=count)
                 {
                     int setIndex=i-count;
                     result[setIndex]=llow;
-                    if (llow == (decimal)data[setIndex])
+                    if (llow == (double)data[setIndex])
                     {
-                        llow = decimal.MaxValue;
+                        llow = double.MaxValue;
                         for (int j = setIndex + 1; j <= i; j++)
                         {
-                            if ((decimal)data[j] < llow)
-                                llow = (decimal)data[j];
+                            if ((double)data[j] < llow)
+                                llow = (double)data[j];
                         }
                     }
                 }
             }
 
-            llow = decimal.MaxValue;
+            llow = double.MaxValue;
             for (int i = result.Length-1; i >= result.Length-count; i--)
             {
-                if (llow > (decimal)data[i])
-                    llow = (decimal)data[i];
+                if (llow > (double)data[i])
+                    llow = (double)data[i];
                 result[i] = llow;
             }
 

@@ -24,24 +24,24 @@ namespace ATrade.CalculateModel
                      return new CalResult
                      {
                          Result=valueCach[this.CalCurrent.CurrentIndex],
-                         ResultType=typeof(decimal)
+                         ResultType=typeof(double)
                      };
                  }
              }
 
              CalResult result = new CalResult();
-             result.ResultType = typeof(decimal[]);
+             result.ResultType = typeof(double[]);
              int day = (int)param1;
-             decimal af = param2.ToDecimal() / 100;
-             decimal aaf = param3.ToDecimal() / 100;
-             decimal rp = param4.ToDecimal() / 100;
+             double af = param2.ToDouble() / 100;
+             double aaf = param3.ToDouble() / 100;
+             double rp = param4.ToDouble() / 100;
 
              result.Results = new object[this.StockQuotes.Length];
-             decimal max = decimal.MinValue;
-             decimal min = decimal.MaxValue;
-             decimal af2 = af;
-             decimal aaf2 = aaf;
-             decimal sar = 0m;
+             double max = double.MinValue;
+             double min = double.MaxValue;
+             double af2 = af;
+             double aaf2 = aaf;
+             double sar = 0;
              bool isUP = true;
              for (int i = this.StockQuotes.Length - 1; i >= 0; i--)
              {
@@ -49,39 +49,39 @@ namespace ATrade.CalculateModel
 
                  if (i > StockQuotes.Length - day)
                  {
-                     if (qt.High > max)
-                         max = qt.High;
-                     if (qt.Low < min)
-                         min = qt.Low;
+                     if ((double)qt.High > max)
+                         max = (double)qt.High;
+                     if ((double)qt.Low < min)
+                         min = (double)qt.Low;
                      result.Results[i] = 0;
                      continue;
                  }
                  else if (i == StockQuotes.Length - day)
                  {
-                     if (qt.High > max)
-                         max = qt.High;
-                     if (qt.Low < min)
-                         min = qt.Low;
+                     if ((double)qt.High > max)
+                         max = (double)qt.High;
+                     if ((double)qt.Low < min)
+                         min = (double)qt.Low;
                      result.Results[i] = min;
-                     isUP = qt.Close > min;
+                     isUP = (double)qt.Close > min;
                      sar = min;
                      continue;
                  }
 
                  if (isUP)
                  {
-                     if (qt.High > max && af2 + aaf2 < rp)
+                     if ((double)qt.High > max && af2 + aaf2 < rp)
                      {
-                         max = qt.High;
+                         max = (double)qt.High;
                          af2 += aaf2;
                      }
-                     decimal newSar = (max - sar) * af2 + sar;
-                     if (newSar > qt.Low)
+                     double newSar = (max - sar) * af2 + sar;
+                     if (newSar > (double)qt.Low)
                      {
                          isUP = false;
                          af2 = af;
                          sar = max - (max - sar) * af;
-                         min = qt.Low;
+                         min = (double)qt.Low;
                      }
                      else
                      {
@@ -90,25 +90,25 @@ namespace ATrade.CalculateModel
                  }
                  else
                  {
-                     if (qt.Low < min && af2 + aaf2 < rp)
+                     if ((double)qt.Low < min && af2 + aaf2 < rp)
                      {
-                         min = qt.Low;
+                         min = (double)qt.Low;
                          af2 += aaf2;
                      }
-                     decimal newsar = sar + (min - sar) * af2;
-                     if (newsar < qt.High)
+                     double newsar = sar + (min - sar) * af2;
+                     if (newsar < (double)qt.High)
                      {
                          isUP = true;
-                         sar = Math.Min(StockQuotes[i + 1].Low, qt.Low);
+                         sar = (double)Math.Min(StockQuotes[i + 1].Low, qt.Low);
                          af2 = af;
-                         max = qt.High;
+                         max = (double)qt.High;
                      }
                      else
                      {
                          sar = newsar;
                      }
                  }
-                 sar = sar.ToDecimal(2);
+                 sar = sar.ToDouble(2);
                  result.Results[i] = sar;
              }
 
@@ -118,7 +118,7 @@ namespace ATrade.CalculateModel
                  return new CalResult
                  {
                      Result = result.Results[CalCurrent.CurrentIndex],
-                     ResultType = typeof(decimal)
+                     ResultType = typeof(double)
                  };
              }
 

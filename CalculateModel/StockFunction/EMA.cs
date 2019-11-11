@@ -27,7 +27,8 @@ namespace ATrade.CalculateModel
         protected override CalResult CollectOperate()
         {
             object[] data = (object[])param1;
-            decimal count = param2.ToDecimal();
+            double count = (double)param2;
+            
             if (count < 1)
                 return null;
 
@@ -38,7 +39,7 @@ namespace ATrade.CalculateModel
                     result[i] = data[i];
                 else
                 {
-                    result[i] = ((decimal)data[i] * 2 + (decimal)result[i + 1] * (count - 1)) / (count + 1);
+                    result[i] = ((double)data[i] * 2 + (double)result[i + 1] * (count - 1)) / (count + 1);
                 }
             }
 

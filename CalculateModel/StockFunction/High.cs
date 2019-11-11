@@ -34,14 +34,14 @@ namespace ATrade.CalculateModel
                 return new CalResult
                 {
                     Result = this.CurrQuote.High,
-                    ResultType = typeof(decimal)
+                    ResultType = typeof(double)
                 };
             }
 
             return new CalResult
             {
                 Results = this.StockQuotes.Select(q => (object)q.High).ToArray(),
-                ResultType = typeof(decimal)
+                ResultType = typeof(double)
             };
         }
     }

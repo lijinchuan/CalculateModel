@@ -39,14 +39,14 @@ namespace ATrade.CalculateModel
                         else
                         {
 
-                            if (result[0].GetType() == typeof(decimal)
-                                || result[0].GetType() == typeof(decimal[]))
-                                result[i] = 0M;
+                            if (result[0].GetType() == typeof(double)
+                                || result[0].GetType() == typeof(double[]))
+                                result[i] = 0d;
                             else if (result[0].GetType() == typeof(bool)
                                 || result[0].GetType() == typeof(bool[]))
                                 result[i] = false;
                             else
-                                result[i] = 0M;
+                                result[i] = 0d;
                         }
                     }
 

@@ -18,7 +18,7 @@ namespace ATrade.CalculateModel
         /// <summary>
         /// 操作价格
         /// </summary>
-        public decimal Price
+        public double Price
         {
             get;
             set;

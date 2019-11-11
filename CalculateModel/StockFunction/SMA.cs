@@ -38,14 +38,14 @@ namespace ATrade.CalculateModel
                     throw new ExpressErrorException("参数错误，SMA第3个参数不能大于第2个参数！");
                 }
 
-                decimal[] result = new decimal[data.Length];
+                double[] result = new double[data.Length];
                 for (int i = data.Length - 1; i >= 0; i--)
                 {
                     if (i == data.Length - 1)
-                        result[i] = (decimal)data[i];
+                        result[i] = (double)data[i];
                     else
                     {
-                        result[i] = (((decimal)data[i] * day + result[i + 1] * (count - day)) / count);
+                        result[i] = (((double)data[i] * day + result[i + 1] * (count - day)) / count);
                     }
                 }
 

@@ -12,7 +12,7 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            WCFStockService.StockServiceClient client = new WCFStockService.StockServiceClient();
+          
             string stkcode = "600031.sh";
             string quotefile = LJC.FrameWork.Comm.CommFun.GetRuningPath() + stkcode + ".xml";
             //var stock = client.GetStockInfo(stkcode);
@@ -34,7 +34,7 @@ namespace ConsoleApplication1
             }
             else
             {
-                var quotes = client.GetHisDayQuote(stkcode, true);
+                ATrade.Data.StockQuote[] quotes = null;
                 stockquotes = new ATrade.Data.StockQuote[quotes.Length];
                 for (int i = 0; i < stockquotes.Length; i++)
                 {

@@ -22,7 +22,7 @@ namespace ATrade.CalculateModel
             {
                 if (CalCurrent.CurrentIndex > -1)
                 {
-                    List<StockCmd_Test> SCTS = new CachDataContextMoudel<StockCmd_Test>()
+                    List<StockCmd_Test> SCTS = (CurrStockDataCalPool.BusiRequest as ATrade.TradeBusiness.TestBusiness).TestStockCmdCach
                     .ExecuteList();
 
                     var cmd= SCTS.LastOrDefault();
@@ -30,34 +30,34 @@ namespace ATrade.CalculateModel
                     {
                         return new CalResult
                         {
-                            Result=0M,
-                            ResultType=typeof(decimal)
+                            Result=0d,
+                            ResultType=typeof(double)
                         };
                     }
 
                     return new CalResult
                     {
-                        ResultType=typeof(decimal),
+                        ResultType=typeof(double),
                         Result=(CurrQuote.Close- cmd.Price)*100/cmd.Price
                     };
                     
                 }
 
                 object[] results = this.CurrStockDataCalPool.Quotes.Select(q =>
-                    (object)0M
+                    (object)0d
                     ).ToList().ToArray();
 
                 return new CalResult
                 {
                     Results = results,
-                    ResultType = typeof(decimal)
+                    ResultType = typeof(double)
                 };
             }
             else
             {
                 if (CalCurrent.CurrentIndex == -1)
                 {
-                    decimal profitRate = 0;
+                    double profitRate = 0;
                     if (this.CurrStockDataCalPool.BusiRequest != null)
                     {
                         var hold = this.CurrStockDataCalPool.BusiRequest.QueryHolds()
@@ -70,7 +70,7 @@ namespace ATrade.CalculateModel
 
                     object[] results = this.CurrStockDataCalPool.Quotes.Select(q =>
                     {
-                        return (object)0M;
+                        return (object)0d;
                     }).ToArray();
 
                     if (profitRate > -100 && profitRate <= -10)
@@ -83,7 +83,7 @@ namespace ATrade.CalculateModel
                     return new CalResult
                     {
                         Results = results,
-                        ResultType = typeof(decimal)
+                        ResultType = typeof(double)
                     };
                 }
                 else
@@ -92,13 +92,13 @@ namespace ATrade.CalculateModel
                     {
                         return new CalResult
                         {
-                            Result = 0M,
-                            ResultType = typeof(decimal)
+                            Result = 0d,
+                            ResultType = typeof(double)
                         };
                     }
                     else
                     {
-                        decimal profitRate = 0;
+                        double profitRate = 0;
                         if (this.CurrStockDataCalPool.BusiRequest != null)
                         {
                             var hold = this.CurrStockDataCalPool.BusiRequest.QueryHolds()
@@ -110,7 +110,7 @@ namespace ATrade.CalculateModel
                         }
                         return new CalResult
                         {
-                            ResultType=typeof(decimal),
+                            ResultType=typeof(double),
                             Result=profitRate
                         };
                     }

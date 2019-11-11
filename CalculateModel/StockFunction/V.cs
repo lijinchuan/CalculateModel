@@ -29,7 +29,7 @@ namespace ATrade.CalculateModel
                 return new CalResult
                 {
                     Result = CurrQuote.Volumne,
-                    ResultType = typeof(decimal)
+                    ResultType = typeof(double)
                 };
             }
 

@@ -61,7 +61,7 @@ namespace ATrade.CalculateModel
                 _isTestMode = value;
                 if (value)
                 {
-                    ResetFund();
+                    //ResetFund();
                 }
             }
         }
@@ -97,22 +97,22 @@ namespace ATrade.CalculateModel
 
         private void ResetFund()
         {
-            MoneyAccount_Test MAT = new MoneyAccount_Test();
-            MAT.FundBalance = 10000M;
-            MAT.Amount = 10000M;
-            MAT.Fund = 0M;
-            MAT.FundBuyFrozen = 0M;
-            MAT.MarketValue = 0M;
-            MAT.StockValue = 0M;
-            MAT.ID = 1;
-            MAT.StockCurrency = "CNY";
+            //MoneyAccount_Test MAT = new MoneyAccount_Test();
+            //MAT.FundBalance = 10000;
+            //MAT.Amount = 10000;
+            //MAT.Fund = 0;
+            //MAT.FundBuyFrozen = 0;
+            //MAT.MarketValue = 0;
+            //MAT.StockValue = 0;
+            //MAT.ID = 1;
+            //MAT.StockCurrency = "CNY";
+            
+            ////new DataContextMoudle<MoneyAccount_Test>((MoneyAccount_Test)MAT).Update();
+            //TestBusiness.TestAccountCach.Update(MAT);
 
-            //new DataContextMoudle<MoneyAccount_Test>((MoneyAccount_Test)MAT).Update();
-            new CachDataContextMoudel<MoneyAccount_Test>().Update(MAT);
+            //TestBusiness.TestStockCmdCach.Clear();
 
-            new CachDataContextMoudel<StockPostions_Test>().Clear();
-
-            new CachDataContextMoudel<StockCmd_Test>().Clear();
+            //TestBusiness.TestStockPostionsCach.Clear();
         }
 
         public StockTradeStatistics GetTestResult()
@@ -126,7 +126,7 @@ namespace ATrade.CalculateModel
             //testBusi.ResetFund(this.Stock.StockCode);
             //this.CallResult();
 
-            var list= new CachDataContextMoudel<StockCmd_Test>().ExecuteList();
+            var list = (BusiRequest as ATrade.TradeBusiness.TestBusiness).TestStockCmdCach.ExecuteList();
             foreach (var test in list)
             {
                 if (test.CmdType == CmdType.buy)

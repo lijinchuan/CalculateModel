@@ -21,51 +21,51 @@ namespace ATrade.CalculateModel
 
         protected override CalResult CollectOperate()
         {
+            throw new NotImplementedException();
+            //if (CurrStockDataCalPool.IsTestMode)
+            //{
+            //    List<StockCmd_Test> SCTS = DataContextMoudelFactory<StockCmd_Test>.GetDataContext()
+            //       .WhereEq("StockCode", CurrStockDataCalPool.Stock.StockCode)
+            //       .ExecuteList().OrderBy(s => s.SubmitTime).ToList();
 
-            if (CurrStockDataCalPool.IsTestMode)
-            {
-                List<StockCmd_Test> SCTS = DataContextMoudelFactory<StockCmd_Test>.GetDataContext()
-                   .WhereEq("StockCode", CurrStockDataCalPool.Stock.StockCode)
-                   .ExecuteList().OrderBy(s => s.SubmitTime).ToList();
+            //    object[] results = this.CurrStockDataCalPool.Quotes.Select(q =>
+            //    {
+            //        StockCmd_Test SCT = SCTS.Where(c => c.SubmitTime < q.Time).OrderByDescending(c => c.SubmitTime).FirstOrDefault();
 
-                object[] results = this.CurrStockDataCalPool.Quotes.Select(q =>
-                {
-                    StockCmd_Test SCT = SCTS.Where(c => c.SubmitTime < q.Time).OrderByDescending(c => c.SubmitTime).FirstOrDefault();
+            //        if (SCT == null || SCT.CmdType == CmdType.sell)
+            //            return (object)false;
 
-                    if (SCT == null || SCT.CmdType == CmdType.sell)
-                        return (object)false;
+            //        return (object)true;
+            //    }).ToArray();
 
-                    return (object)true;
-                }).ToArray();
+            //    return new CalResult
+            //    {
+            //        Results = results,
+            //        ResultType = typeof(bool)
+            //    };
+            //}
+            //else
+            //{
+            //    List<StockPostions> list = DataContextMoudelFactory<StockPostions>.GetDataContext().ExecuteList();
+            //    StockPostions sp = list.Find(l => l.StockCode == this.CurrStockDataCalPool.Stock.StockCode);
 
-                return new CalResult
-                {
-                    Results = results,
-                    ResultType = typeof(bool)
-                };
-            }
-            else
-            {
-                List<StockPostions> list = DataContextMoudelFactory<StockPostions>.GetDataContext().ExecuteList();
-                StockPostions sp = list.Find(l => l.StockCode == this.CurrStockDataCalPool.Stock.StockCode);
+            //    object[] results = this.CurrStockDataCalPool.Quotes.Select(q =>
+            //    {
+            //        if (sp == null)
+            //            return (object)false;
 
-                object[] results = this.CurrStockDataCalPool.Quotes.Select(q =>
-                {
-                    if (sp == null)
-                        return (object)false;
+            //        if (q.Time.Date >= sp.LastUpdateTime.Date)
+            //            return (object)true;
 
-                    if (q.Time.Date >= sp.LastUpdateTime.Date)
-                        return (object)true;
+            //        return (object)false;
+            //    }).ToArray();
 
-                    return (object)false;
-                }).ToArray();
-
-                return new CalResult
-                {
-                    Results = results,
-                    ResultType = typeof(bool)
-                };
-            }
+            //    return new CalResult
+            //    {
+            //        Results = results,
+            //        ResultType = typeof(bool)
+            //    };
+            //}
         }
 
         protected override CalResult SingOperate()

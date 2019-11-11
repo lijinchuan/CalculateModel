@@ -29,14 +29,14 @@ namespace ATrade.CalculateModel
                 return new CalResult
                 {
                     Result = this.CurrQuote.Open,
-                    ResultType = typeof(decimal)
+                    ResultType = typeof(double)
                 };
             }
 
             return new CalResult
             {
                 Results = CurrStockDataCalPool.Quotes.Select(q => q.Open.ToString()).ToArray(),
-                ResultType = typeof(decimal)
+                ResultType = typeof(double)
             };
         }
 

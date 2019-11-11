@@ -29,13 +29,13 @@ namespace ATrade.CalculateModel
             {
                 object[] p1 = (object[])param1;
                 result.Results = new object[p1.Length];
-                decimal m = decimal.MinValue;
+                double m = double.MinValue;
                 if (param2 == null)
                 {
                     for (int i = p1.Length-1; i >=0; i--)
                     {
-                        if ((decimal)p1[i] > m)
-                            m = (decimal)p1[i];
+                        if ((double)p1[i] > m)
+                            m = (double)p1[i];
                         result.Results[i] = m;
                     }
                 }
@@ -48,15 +48,15 @@ namespace ATrade.CalculateModel
                             throw new ExpressErrorException("Max方法两边操作数不相等");
                         for (int i = 0; i < p1.Length; i++)
                         {
-                            result.Results[i] = Math.Max((decimal)p1[i], (decimal)p2[i]);
+                            result.Results[i] = Math.Max((double)p1[i], (double)p2[i]);
                         }
                     }
                     else
                     {
-                        decimal p2 = (decimal)param2;
+                        double p2 = (double)param2;
                         for (int i = 0; i < p1.Length; i++)
                         {
-                            result.Results[i] = Math.Max((decimal)p1[i], p2);
+                            result.Results[i] = Math.Max((double)p1[i], p2);
                         }
                     }
                 }
@@ -65,12 +65,12 @@ namespace ATrade.CalculateModel
             {
                 if (!(param2 is object[]))
                     throw new ExpressErrorException("Max方法参数错误，第二参数不是集合");
-                decimal p1 = (decimal)param1;
+                double p1 = (double)param1;
                 object[] p2 = (object[])param2;
                 result.Results=new object[p2.Length];
                 for (int i = 0; i < p2.Length; i++)
                 {
-                    result.Results[i] = Math.Max(p1, (decimal)p2[i]);
+                    result.Results[i] = Math.Max(p1, (double)p2[i]);
                 }
             }
 
@@ -81,8 +81,8 @@ namespace ATrade.CalculateModel
         {
             return new CalResult
             {
-                ResultType = typeof(decimal),
-                Result = Math.Max((decimal)param1, (decimal)param2)
+                ResultType = typeof(double),
+                Result = Math.Max((double)param1, (double)param2)
             };
         }
     }

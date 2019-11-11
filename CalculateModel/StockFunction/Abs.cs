@@ -18,8 +18,8 @@ namespace ATrade.CalculateModel
         {
             return new CalResult
             {
-                Result = Math.Abs((decimal)RightSigelVal),
-                ResultType = typeof(decimal)
+                Result = Math.Abs((double)RightSigelVal),
+                ResultType = typeof(double)
             };
         }
 
@@ -29,15 +29,15 @@ namespace ATrade.CalculateModel
             {
                 return new CalResult
                 {
-                    Result=Math.Abs((decimal)this.RightCollVal[CalCurrent.CurrentIndex]),
-                    ResultType=typeof(decimal)
+                    Result=Math.Abs((double)this.RightCollVal[CalCurrent.CurrentIndex]),
+                    ResultType=typeof(double)
                 };
             }
 
             return new CalResult
             {
-                Results = this.RightCollVal.Select(s => (object)Math.Abs((decimal)s)).ToArray(),
-                ResultType = typeof(decimal)
+                Results = this.RightCollVal.Select(s => (object)Math.Abs((double)s)).ToArray(),
+                ResultType = typeof(double)
             };
         }
 

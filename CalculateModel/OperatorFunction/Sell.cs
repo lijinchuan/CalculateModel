@@ -49,7 +49,7 @@ namespace ATrade.CalculateModel
             }
             else
             {
-                cmd.EffDate = this.StockQuotes.LastOrDefault(p => p.Time > this.CurrQuote.Time).Time;
+                cmd.EffDate = this.StockQuotes.LastOrDefault(p => p.Time > this.CurrQuote.Time)?.Time??default(DateTime);
                 if (cmd.EffDate == default(DateTime))
                 {
                     cmd.EffDate = this.CurrQuote.Time.Date.AddDays(1);

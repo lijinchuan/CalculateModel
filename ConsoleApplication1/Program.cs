@@ -14,46 +14,21 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
           
-            string stkcode = "600682.SH";
-            string quotefile = LJC.FrameWork.Comm.CommFun.GetRuningPath() + stkcode + ".xml";
+            string stkcode = "688058.SH";
+            //string quotefile = LJC.FrameWork.Comm.CommFun.GetRuningPath() + stkcode + ".xml";
             //var stock = client.GetStockInfo(stkcode);
 
-            var stockinfo = new ATrade.Data.Stock
-            {
-                Spell = "njxb",
-                StockCode = "600682",
-                StockName = "南京新百",
-                Exchange="sse",
-                Market=ATrade.Data.StockExchange.XSHE,
-            };
+            //var stockinfo = new ATrade.Data.Stock
+            //{
+            //    Spell = "njxb",
+            //    StockCode = "600682",
+            //    StockName = "南京新百",
+            //    Exchange="sse",
+            //    Market=ATrade.Data.StockExchange.XSHE,
+            //};
 
-            ATrade.Data.StockQuote[] stockquotes = null;
-            if (File.Exists(quotefile))
-            {
-                stockquotes = LJC.FrameWork.Comm.SerializerHelper.DeSerializerFile<ATrade.Data.StockQuote[]>(quotefile);
-            }
-            else
-            {
-                ATrade.Data.StockQuote[] quotes = null;
-                stockquotes = new ATrade.Data.StockQuote[quotes.Length];
-                for (int i = 0; i < stockquotes.Length; i++)
-                {
-                    stockquotes[i] = new ATrade.Data.StockQuote
-                    {
-                        Amount = quotes[i].Amount,
-                        ChangePrice = quotes[i].ChangePrice,
-                        ChangeRate = quotes[i].ChangeRate,
-                        Close = quotes[i].Close,
-                        High = quotes[i].High,
-                        Low = quotes[i].Low,
-                        Open = quotes[i].Open,
-                        PreClose = quotes[i].PreClose,
-                        Time = quotes[i].Time,
-                        Volumne = quotes[i].Volumne,
-                    };
-                }
-                LJC.FrameWork.Comm.SerializerHelper.SerializerToXML<ATrade.Data.StockQuote[]>(stockquotes, quotefile);
-            }
+            ATrade.Data.StockQuote[] stockquotes = ATrade.Server.StockServer.GetHisDayQuote(stkcode).Take(120).ToArray();
+            var stockinfo = ATrade.Server.StockServer.GetStock(stkcode);
 
             ATrade.TradeBusiness.TestBusiness tb = new ATrade.TradeBusiness.TestBusiness();
             StockDataCalPool pool = new StockDataCalPool(tb, stockinfo, stockquotes);

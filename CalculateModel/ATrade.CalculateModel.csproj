@@ -65,11 +65,12 @@
     <Reference Include="System.Xml" />
     <Reference Include="TradeBusiness, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\GitHub\ATrade3.0\ATUI2.0\ATradeUI2.0\bin\Release\TradeBusiness.dll</HintPath>
+      <HintPath>..\..\ATrade3.0\TradeBusiness\TradeBusiness\bin\Debug\TradeBusiness.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book\UseBook.cs" />
+    <Compile Include="Calc.cs" />
     <Compile Include="OperatorFunction\Buy.cs" />
     <Compile Include="OperatorFunction\OperatorResult.cs" />
     <Compile Include="OperatorFunction\Sell.cs" />

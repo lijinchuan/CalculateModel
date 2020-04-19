@@ -36,18 +36,24 @@ namespace ATrade.CalculateModel
             cmd.CreateTime = DateTime.Now;
             cmd.SubmitTime = new DateTime(1900, 1, 1);
             //cmd.EffDate =TradeCalanderServer.NextTradeDate(this.CurrStockDataCalPool.Quotes[this.CurrStockDataCalPool.CurrIndex].Time).AddDays(1);
-            cmd.EffDate = TradeCalanderServer.NextTradeDate(this.CurrQuote.Time);
+
             if (!string.IsNullOrWhiteSpace((string)param1))
                 cmd.CmdReason = param1.ToString();
 
             if (!this.CurrStockDataCalPool.IsTestMode)
             {
+                cmd.EffDate = TradeCalanderServer.NextTradeDate(this.CurrQuote.Time);
                 if (cmd.EffDate == TradeCalanderServer.NextOpenTime(DateTime.Now).Date)
                     LocalDB.AddStockCmd(cmd);
                 
             }
             else
             {
+                cmd.EffDate = this.StockQuotes.LastOrDefault(p => p.Time > this.CurrQuote.Time).Time;
+                if (cmd.EffDate == default(DateTime))
+                {
+                    cmd.EffDate = this.CurrQuote.Time.Date.AddDays(1);
+                }
                 if (CalCurrent.CurrentIndex < CurrStockDataCalPool.Quotes.Length - 60)
                 {
                     (CurrStockDataCalPool.BusiRequest as TestBusiness).SetTradeTime(CurrQuote.Time).Order(StockOrderSide.buy, 0, CurrStockDataCalPool.Stock, 0, CurrQuote.Close, false);

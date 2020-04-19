@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ArrayOfStockTradeCostResponse xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <StockTradeCostResponse>
+    <ChangeFee>0</ChangeFee>
+    <Commission>0.0002</Commission>
+    <ID>2</ID>
+    <Market>XSHE</Market>
+    <MinChangeFee>0</MinChangeFee>
+    <MinCommission>5</MinCommission>
+    <StampTax>0.003</StampTax>
+    <StampTax_Buy>true</StampTax_Buy>
+    <StampTax_Sell>false</StampTax_Sell>
+    <Userid>lijinchuan</Userid>
+  </StockTradeCostResponse>
+  <StockTradeCostResponse>
+    <ChangeFee>1</ChangeFee>
+    <Commission>0.0002</Commission>
+    <ID>1</ID>
+    <Market>XSHG</Market>
+    <MinChangeFee>1</MinChangeFee>
+    <MinCommission>5</MinCommission>
+    <StampTax>0.003</StampTax>
+    <StampTax_Buy>true</StampTax_Buy>
+    <StampTax_Sell>false</StampTax_Sell>
+    <Userid>lijinchuan</Userid>
+  </StockTradeCostResponse>
+</ArrayOfStockTradeCostResponse>

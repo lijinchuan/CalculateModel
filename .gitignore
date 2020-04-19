@@ -1,3 +1,6 @@
 ﻿bin
 obj
 TestResults
+*.suo
+*.user
+.vs

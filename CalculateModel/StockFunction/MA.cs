@@ -32,12 +32,20 @@ namespace ATrade.CalculateModel
                 return null;
 
             object[] result=new object[data.Length];
-            for (int i = 0; i < data.Length; i++)
+            var sum = 0d;
+            for (var i = data.Length - 1; i >= 0; i--)
             {
-                if (i < data.Length - count)
-                    result[i] = data.Skip(i).Take(count).Sum(c => (double)c) / count;
-                else
+                if (i > data.Length - count)
+                {
                     result[i] = 0d;
+                    sum += (double)data[i];
+                }
+                else
+                {
+                    sum += (double)data[i];
+                    result[i] = sum / count;
+                    sum -= (double)data[i + count - 1];
+                }
             }
 
             return new CalResult

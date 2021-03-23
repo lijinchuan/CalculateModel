@@ -38,9 +38,14 @@ namespace ATrade.CalculateModel
                 };
             }
 
+            if (valueCach == null)
+            {
+                valueCach = this.StockQuotes.Select(q => (object)q.High).ToArray();
+            }
+
             return new CalResult
             {
-                Results = this.StockQuotes.Select(q => (object)q.High).ToArray(),
+                Results = valueCach,
                 ResultType = typeof(double)
             };
         }

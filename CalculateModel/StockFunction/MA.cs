@@ -33,9 +33,10 @@ namespace ATrade.CalculateModel
 
             object[] result=new object[data.Length];
             var sum = 0d;
-            for (var i = data.Length - 1; i >= 0; i--)
+
+            for (var i = 0; i < data.Length; i++)
             {
-                if (i > data.Length - count)
+                if (i < count - 1)
                 {
                     result[i] = 0d;
                     sum += (double)data[i];
@@ -44,7 +45,7 @@ namespace ATrade.CalculateModel
                 {
                     sum += (double)data[i];
                     result[i] = sum / count;
-                    sum -= (double)data[i + count - 1];
+                    sum -= (double)data[i - count + 1];
                 }
             }
 

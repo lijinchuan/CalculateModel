@@ -32,9 +32,13 @@ namespace ATrade.CalculateModel
                     ResultType = typeof(double)
                 };
             }
+            if (this.valueCach == null)
+            {
+                this.valueCach = this.StockQuotes.Select(q => (object)q.Close).ToArray();
+            }
             return new CalResult
             {
-                Results = this.StockQuotes.Select(q => (object)q.Close).ToArray(),
+                Results = this.valueCach,
                 ResultType = typeof(double)
             };
         }

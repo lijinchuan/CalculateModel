@@ -33,9 +33,14 @@ namespace ATrade.CalculateModel
                 };
             }
 
+            if (valueCach == null)
+            {
+                valueCach = CurrStockDataCalPool.Quotes.Select(q => q.Open.ToString()).ToArray();
+            }
+
             return new CalResult
             {
-                Results = CurrStockDataCalPool.Quotes.Select(q => q.Open.ToString()).ToArray(),
+                Results = valueCach,
                 ResultType = typeof(double)
             };
         }

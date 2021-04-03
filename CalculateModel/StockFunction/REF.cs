@@ -28,22 +28,23 @@ namespace ATrade.CalculateModel
             {
                 if (valueCach == null)
                 {
+                    Console.WriteLine("ref 计算");
                     int _ref = int.Parse(param2.ToString());
                     object[] data = (object[])param1;
 
                     object[] result = new object[data.Length];
                     for (int i = 0; i < data.Length; i++)
                     {
-                        if (i + _ref < data.Length)
-                            result[i] = data[i + _ref];
+                        if (i - _ref >=0)
+                            result[i] = data[i - _ref];
                         else
                         {
 
-                            if (result[0].GetType() == typeof(double)
-                                || result[0].GetType() == typeof(double[]))
+                            if (data[0].GetType() == typeof(double)
+                                || data[0].GetType() == typeof(double[]))
                                 result[i] = 0d;
-                            else if (result[0].GetType() == typeof(bool)
-                                || result[0].GetType() == typeof(bool[]))
+                            else if (data[0].GetType() == typeof(bool)
+                                || data[0].GetType() == typeof(bool[]))
                                 result[i] = false;
                             else
                                 result[i] = 0d;

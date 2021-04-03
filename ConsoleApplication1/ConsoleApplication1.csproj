@@ -43,7 +43,7 @@
     </Reference>
     <Reference Include="LJC.FrameWork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\LJC.FrameWork\LJC.FrameWork\bin\Release\LJC.FrameWork.dll</HintPath>
+      <HintPath>..\..\LJC.FrameWork\LJC.FrameWork\bin\Debug\LJC.FrameWork.dll</HintPath>
     </Reference>
     <Reference Include="LJC.FrameWork.SOA">
       <HintPath>..\..\LJC.FrameWork\LJC.FrameWork.SOA\bin\Release\LJC.FrameWork.SOA.dll</HintPath>

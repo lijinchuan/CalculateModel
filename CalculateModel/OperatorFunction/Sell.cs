@@ -49,12 +49,12 @@ namespace ATrade.CalculateModel
             }
             else
             {
-                cmd.EffDate = this.StockQuotes.LastOrDefault(p => p.Time > this.CurrQuote.Time)?.Time??default(DateTime);
+                cmd.EffDate = this.StockQuotes.FirstOrDefault(p => p.Time > this.CurrQuote.Time)?.Time??default(DateTime);
                 if (cmd.EffDate == default(DateTime))
                 {
                     cmd.EffDate = this.CurrQuote.Time.Date.AddDays(1);
                 }
-                if (CalCurrent.CurrentIndex < CurrStockDataCalPool.Quotes.Length - 60)
+                if (CalCurrent.CurrentIndex >60)
                 {
                     (CurrStockDataCalPool.BusiRequest as TestBusiness).SetTradeTime(CurrQuote.Time).Order(StockOrderSide.sell, 0, CurrStockDataCalPool.Stock, 0, CurrQuote.Close, false);
                 }

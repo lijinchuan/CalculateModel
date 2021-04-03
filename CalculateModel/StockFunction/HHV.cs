@@ -31,39 +31,61 @@ namespace ATrade.CalculateModel
             if (count < 1)
                 return null;
 
-            double hhight = 0;
             object[] result=new object[data.Length];
 
-            for (int i = 0; i < data.Length; i++)
+            var maxindex = -1;
+            var nextmaxindex = -1;
+            for (var i = 0; i < data.Length; i++)
             {
-                
-                if ((double)data[i] > hhight)
+                if (i == 0)
                 {
-                    hhight = (double)data[i];
+                    maxindex = i;
+                    result[i]= data[i];
                 }
-
-                if (i>=count)
+                else
                 {
-                    int setIndex=i-count;
-                    result[setIndex]=hhight;
-                    if (hhight == (double)data[setIndex])
+                    if (i - maxindex < count)
                     {
-                        hhight = 0;
-                        for (int j = setIndex + 1; j <= i; j++)
+                        if ((double)data[i] >= (double)data[maxindex])
                         {
-                            if ((double)data[j] > hhight)
-                                hhight = (double)data[j];
+                            maxindex = i;
+                            result[i] = data[i];
+                            nextmaxindex = i + 1;
+                        }
+                        else
+                        {
+                            result[i] = data[maxindex];
+                            if (nextmaxindex == -1)
+                            {
+                                nextmaxindex = i;
+                            }
+                            else
+                            {
+                                if ((double)data[i] >= (double)data[nextmaxindex])
+                                {
+                                    nextmaxindex = i;
+                                }
+                            }
                         }
                     }
+                    else
+                    {
+                        maxindex = nextmaxindex;
+                        if ((double)data[i] >= (double)data[maxindex])
+                        {
+                            maxindex = i;
+                            nextmaxindex = i + 1;
+                        }
+                        else
+                        {
+                            if ((double)data[i] > (double)data[nextmaxindex])
+                                nextmaxindex = i;
+                            else
+                                nextmaxindex++;
+                        }
+                        result[i] = data[maxindex];
+                    }
                 }
-            }
-
-            hhight = 0;
-            for (int i = result.Length-1; i >= result.Length-count; i--)
-            {
-                if (hhight < (double)data[i])
-                    hhight = (double)data[i];
-                result[i] = hhight;
             }
 
             return new CalResult

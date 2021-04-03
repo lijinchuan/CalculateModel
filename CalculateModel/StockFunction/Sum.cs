@@ -30,7 +30,8 @@ namespace ATrade.CalculateModel
                 object[] p1 = (object[])param1;
                 double sumTotal = 0;
                 results = new object[p1.Length];
-                for (int i = p1.Length - 1; i >= 0; i--)
+                for (var i = 0; i < p1.Length; i++)
+                //for (int i = p1.Length - 1; i >= 0; i--)
                 {
                     sumTotal += p1[i].ToDouble();
                     results[i] = sumTotal;

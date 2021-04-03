@@ -39,13 +39,16 @@ namespace ATrade.CalculateModel
                 }
 
                 double[] result = new double[data.Length];
-                for (int i = data.Length - 1; i >= 0; i--)
+
+                for(var i = 0; i < data.Length; i++)
                 {
-                    if (i == data.Length - 1)
+                    if (i == 0)
+                    {
                         result[i] = (double)data[i];
+                    }
                     else
                     {
-                        result[i] = (((double)data[i] * day + result[i + 1] * (count - day)) / count);
+                        result[i] = ((double)data[i] * day + result[i - 1] * (count - day)) / count;
                     }
                 }
 

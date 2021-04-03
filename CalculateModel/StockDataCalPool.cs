@@ -90,6 +90,10 @@ namespace ATrade.CalculateModel
            this.BusiRequest = busiRequest;
             Stock = stock;
             Quotes = quoteData;
+            if (Quotes.Length > 1 && Quotes.Last().Time < Quotes.First().Time)
+            {
+                Quotes = Quotes.Reverse().ToArray();
+            }
 
             IsTestMode = isTestMode;
             

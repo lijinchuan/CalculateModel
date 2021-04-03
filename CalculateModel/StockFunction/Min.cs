@@ -24,7 +24,8 @@ namespace ATrade.CalculateModel
                 double m = double.MaxValue;
                 if (param2 == null)
                 {
-                    for (int i = p1.Length-1; i >=0; i--)
+                    for (var i = 0; i < p1.Length; i++)
+                    //for (int i = p1.Length-1; i >=0; i--)
                     {
                         if (p1[i].ToDouble(2) < m)
                             m = p1[i].ToDouble(2);

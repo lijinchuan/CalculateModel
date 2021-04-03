@@ -33,13 +33,16 @@ namespace ATrade.CalculateModel
                 return null;
 
             object[] result=new object[data.Length];
-            for (int i = data.Length-1; i >=0; i--)
+
+            for(var i = 0; i < data.Length; i++)
             {
-                if (i == data.Length - 1)
+                if (i == 0)
+                {
                     result[i] = data[i];
+                }
                 else
                 {
-                    result[i] = ((double)data[i] * 2 + (double)result[i + 1] * (count - 1)) / (count + 1);
+                    result[i] = ((double)data[i] * 2 + (double)result[i - 1] * (count - 1)) / (count + 1);
                 }
             }
 

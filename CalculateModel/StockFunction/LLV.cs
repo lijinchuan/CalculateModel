@@ -31,39 +31,61 @@ namespace ATrade.CalculateModel
             if (count < 1)
                 return null;
 
-            double llow = double.MaxValue;
-            object[] result=new object[data.Length];
-
-            for (int i = 0; i < data.Length; i++)
+            object[] result = new object[data.Length];
+            var minindex = -1;
+            var nextminindex = -1;
+            for (var i = 0; i < data.Length; i++)
             {
-                
-                if ((double)data[i] < llow)
+                if (i == 0)
                 {
-                    llow = (double)data[i];
+                    minindex = i;
+                    result[i] = data[i];
                 }
-
-                if (i>=count)
+                else
                 {
-                    int setIndex=i-count;
-                    result[setIndex]=llow;
-                    if (llow == (double)data[setIndex])
+                    if (i - minindex < count)
                     {
-                        llow = double.MaxValue;
-                        for (int j = setIndex + 1; j <= i; j++)
+                        if ((double)data[i] <= (double)data[minindex])
                         {
-                            if ((double)data[j] < llow)
-                                llow = (double)data[j];
+                            minindex = i;
+                            result[i] = data[i];
+                            nextminindex = i + 1;
+                        }
+                        else
+                        {
+                            result[i] = data[minindex];
+                            if (nextminindex == -1)
+                            {
+                                nextminindex = i;
+                            }
+                            else
+                            {
+                                if ((double)data[i] <= (double)data[nextminindex])
+                                {
+                                    nextminindex = i;
+                                }
+                            }
                         }
                     }
-                }
-            }
+                    else
+                    {
+                        minindex = nextminindex;
+                        if ((double)data[i] <= (double)data[minindex])
+                        {
+                            minindex = i;
+                            nextminindex = i + 1;
+                        }
+                        else
+                        {
+                            if ((double)data[i] < (double)data[nextminindex])
+                                nextminindex = i;
+                            else
+                                nextminindex++;
+                        }
 
-            llow = double.MaxValue;
-            for (int i = result.Length-1; i >= result.Length-count; i--)
-            {
-                if (llow > (double)data[i])
-                    llow = (double)data[i];
-                result[i] = llow;
+                        result[i] = data[minindex];
+                    }
+                }
             }
 
             return new CalResult

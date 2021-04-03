@@ -32,7 +32,8 @@ namespace ATrade.CalculateModel
                 double m = double.MinValue;
                 if (param2 == null)
                 {
-                    for (int i = p1.Length-1; i >=0; i--)
+                    for (var i = 0; i < p1.Length; i++)
+                    //for (int i = p1.Length-1; i >=0; i--)
                     {
                         if ((double)p1[i] > m)
                             m = (double)p1[i];

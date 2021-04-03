@@ -26,45 +26,46 @@ namespace ATrade.CalculateModel
         {
             if (valueCach == null)
             {
-                object[] o = new object[CurrStockDataCalPool.Quotes.Length];
+                var quotes = CurrStockDataCalPool.Quotes;
+                object[] o = new object[quotes.Length];
 
-                int lastIndex = CurrStockDataCalPool.Quotes.Length - 3;
-                double fxPrice = CurrStockDataCalPool.Quotes[lastIndex].High;
+                int lastIndex = 2;
+                double fxPrice = quotes[lastIndex].High;
                 //是否有效
                 bool isValid = false;
 
-                for (int i = CurrStockDataCalPool.Quotes.Length - 1; i >= 0; i--)
+                for (int i = 0; i < quotes.Length; i++)
                 {
                     //倒数第三天才有
-                    if (i > CurrStockDataCalPool.Quotes.Length - 3)
+                    if (i < 2)
                     {
                         o[i] = double.MaxValue;
                         continue;
                     }
 
-                    for (int j = lastIndex - 1; j > i + 2; j--)
+                    for (int j = lastIndex + 1; j < i - 2; j++)
                     {
-                        if ((double)CurrStockDataCalPool.Quotes[j].High > fxPrice)
+                        if ((double)quotes[j].High > fxPrice)
                         {
                             //旧的分形被突破
                             isValid = false;
                         }
 
-                        if (CurrStockDataCalPool.Quotes[j - 2].High <= CurrStockDataCalPool.Quotes[j].High
-                              && CurrStockDataCalPool.Quotes[j - 1].High <= CurrStockDataCalPool.Quotes[j].High
-                              && CurrStockDataCalPool.Quotes[j].High >= CurrStockDataCalPool.Quotes[j + 1].High
-                              && CurrStockDataCalPool.Quotes[j].High >= CurrStockDataCalPool.Quotes[j + 2].High)
+                        if (quotes[j - 2].High <= quotes[j].High
+                              && quotes[j - 1].High <= quotes[j].High
+                              && quotes[j].High >= quotes[j + 1].High
+                              && quotes[j].High >= quotes[j + 2].High)
                         {
                             //新的分形诞生
-                            fxPrice = (double)CurrStockDataCalPool.Quotes[j].High;
+                            fxPrice = (double)quotes[j].High;
                             lastIndex = j;
                             isValid = true;
                         }
                     }
 
                     //新的分形是否被突破,但最近两天不可能会产生新的分形
-                    if (CurrStockDataCalPool.Quotes[i + 1].High > fxPrice
-                        || CurrStockDataCalPool.Quotes[i + 2].High > fxPrice)
+                    if (quotes[i - 1].High > fxPrice
+                        || quotes[i - 2].High > fxPrice)
                         isValid = false;
 
                     if (isValid)

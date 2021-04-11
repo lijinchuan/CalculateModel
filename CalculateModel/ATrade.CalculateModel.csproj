@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="StockFunction\Abs.cs" />
     <Compile Include="StockFunction\C.cs" />
+    <Compile Include="StockFunction\Choose.cs" />
     <Compile Include="StockFunction\HF.cs" />
     <Compile Include="StockFunction\High.cs" />
     <Compile Include="StockFunction\ISHOLD.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="StockFunction\Sum.cs" />
     <Compile Include="StockFunction\Test.cs" />
     <Compile Include="StockFunction\Today.cs" />
+    <Compile Include="StockFunction\TradeTime.cs" />
     <Compile Include="StockFunction\V.cs" />
     <Compile Include="StockFunction\O.cs" />
     <Compile Include="StockFunction\A.cs" />

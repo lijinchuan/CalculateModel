@@ -15,7 +15,7 @@ namespace ATrade.CalculateModel
         {
 
         }
-
+        static int totalcount = 0;
         protected override CalResult CollectOperate()
         {
             if (CurrStockDataCalPool.IsTestMode)

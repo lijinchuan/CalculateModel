@@ -7,6 +7,7 @@ using ATrade.Data;
 using ATrade.TradeBusiness;
 using LJC.FrameWork.Data;
 using LJC.FrameWork.CodeExpression;
+using ATrade.CalculateModel.StockFunction;
 
 namespace ATrade.CalculateModel
 {
@@ -44,6 +45,8 @@ namespace ATrade.CalculateModel
             CalSignFactory.Register("vol", typeof(V));
             CalSignFactory.Register("buy", typeof(Buy));
             CalSignFactory.Register("sell", typeof(Sell));
+            CalSignFactory.Register("choose", typeof(Choose));
+            CalSignFactory.Register("tradetime", typeof(TradeTime));
         }
 
         private bool _isTestMode = false;

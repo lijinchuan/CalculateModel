@@ -104,6 +104,12 @@
     <Compile Include="StockFunction\EMA.cs" />
     <Compile Include="StockFunction\SMA.cs" />
     <Compile Include="StockFunction\REF.cs" />
+    <Compile Include="StockFunction\WeekAmount.cs" />
+    <Compile Include="StockFunction\WeekClose.cs" />
+    <Compile Include="StockFunction\WeekHigh.cs" />
+    <Compile Include="StockFunction\WeekLow.cs" />
+    <Compile Include="StockFunction\WeekOpen.cs" />
+    <Compile Include="StockFunction\WeekVol.cs" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

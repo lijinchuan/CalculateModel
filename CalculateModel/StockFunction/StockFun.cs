@@ -5,6 +5,7 @@ using System.Text;
 using ATrade.Data;
 using ATrade.Quote;
 using LJC.FrameWork.CodeExpression;
+using LJC.FrameWork.Comm;
 
 namespace ATrade.CalculateModel
 {
@@ -22,6 +23,34 @@ namespace ATrade.CalculateModel
 
                 _stockQuotes = this.CurrStockDataCalPool.Quotes;
                 return _stockQuotes;
+            }
+        }
+
+        private StockQuote[] _weekStockQuotes;
+        protected StockQuote[] WeekStockQuotes
+        {
+            get
+            {
+                if (_weekStockQuotes != null)
+                {
+                    return _weekStockQuotes;
+                }
+
+                _weekStockQuotes = this.CurrStockDataCalPool.Quotes.Select(p => new
+                {
+                    weekfirst = DateTimeHelper.GetWeekFirstDate(p.Time),
+                    quote = p
+                }).GroupBy(p => p.weekfirst).Select(p => new StockQuote
+                {
+                    Close = p.First().quote.Close,
+                    High = p.Max(q => q.quote.High),
+                    Amount = p.Sum(q => q.quote.Amount),
+                    Low = p.Min(q => q.quote.Low),
+                    Open = p.Last().quote.Open,
+                    Time = p.First().quote.Time,
+                    Volumne = p.Sum(q => q.quote.Volumne)
+                }).ToArray();
+                return _weekStockQuotes;
             }
         }
 

@@ -46,6 +46,7 @@ namespace ATrade.CalculateModel
             CalSignFactory.Register("buy", typeof(Buy));
             CalSignFactory.Register("sell", typeof(Sell));
             CalSignFactory.Register("choose", typeof(Choose));
+            CalSignFactory.Register("tradetime", typeof(TradeTime));
             CalSignFactory.Register("WeekAmount", typeof(WeekAmount));
             CalSignFactory.Register("WeekClose", typeof(WeekClose));
             CalSignFactory.Register("WeekHigh", typeof(WeekHigh));

@@ -41,6 +41,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ATrade3.0\ATUI2.0\ATradeUI2.0\bin\Debug\ATrade.Data.dll</HintPath>
     </Reference>
+    <Reference Include="LJC.Com.StockService.Contract">
+      <HintPath>..\DLL\LJC.Com.StockService.Contract.dll</HintPath>
+    </Reference>
     <Reference Include="LJC.FrameWork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\LJC.FrameWork\LJC.FrameWork\bin\Debug\LJC.FrameWork.dll</HintPath>

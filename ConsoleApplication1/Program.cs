@@ -46,7 +46,7 @@ namespace ConsoleApplication1
 
         static void Main(string[] args)
         {
-            string stkcode = "000001.IX";
+            string stkcode = "000826.SZ";
             //string quotefile = LJC.FrameWork.Comm.CommFun.GetRuningPath() + stkcode + ".xml";
             //var stock = client.GetStockInfo(stkcode);
 
@@ -111,6 +111,23 @@ B0:IF AC4 or (H>HF AND UP>TEETH AND TEETH>DOWN) OR ((AO<=0 AND REF(AO,1)<REF(AO,
 S0:IF (REF(LF,1)>0 AND LF=0) OR ((REF(UP,1)<UP AND AO>0 AND REF(AO,1)>REF(AO,2) AND (MFI<=REF(MFI,1)*0.9 AND V>=REF(V,1)*1.1))) THEN TRUE ELSE F END;
 FOR x:0 TO len(B0)-1 begin IF arrayof(B0,x) AND NOT arrayof(S0,x) THEN BUY('buy') ELSE IF NOT arrayof(B0,x) AND arrayof(S0,x) THEN SELL('sell') END END END;";
 
+            code = @"DIF:EMA(CLOSE,12)-EMA(CLOSE,26);
+DEA:EMA(DIF,9);
+MACD:(DIF-DEA)*2;
+VAR1:(H+L)/2;
+UP:REF(SMA(VAR1,5,1),3);
+TEETH:REF(SMA(VAR1,8,1),5);
+DOWN:REF(SMA(VAR1,13,1),8);
+MFI:(H-L)*10000000/V;
+MA1:MA((HIGH+LOW)/2,5);
+MA2:MA((HIGH+LOW)/2,21);
+AO:MA1-MA2;
+AC:AO-MA(AO,5);
+LC:REF(CLOSE,1);
+RSI1:SMA(MAX(CLOSE-LC,0),6,1)/SMA(ABS(CLOSE-LC),6,1)*100;
+RSI2:SMA(MAX(CLOSE-LC,0),12,1)/SMA(ABS(CLOSE-LC),12,1)*100;
+RSI3:SMA(MAX(CLOSE-LC,0),24,1)/SMA(ABS(CLOSE-LC),24,1)*100;
+chooseresult:IF date('2021-05-28')=tradetime AND H>HF AND UP>TEETH AND TEETH>DOWN AND SCR70<=10 AND SCR90<=10 THEN choose END";
             //            string code = @"N:13;
             //N1:8;
             //WR1:100*(HHV(HIGH,N)-CLOSE)/(HHV(HIGH,N)-LLV(LOW,N));

@@ -6,10 +6,11 @@ using ATrade.Data;
 using ATrade.Quote;
 using LJC.FrameWork.CodeExpression;
 using LJC.FrameWork.Comm;
+using LJC.FrameWork.SOA;
 
 namespace ATrade.CalculateModel
 {
-    internal class StockFun:CustomFun,ICollectionResultFun
+    internal class StockFun : CustomFun, ICollectionResultFun
     {
         private StockQuote[] _stockQuotes;
         protected StockQuote[] StockQuotes
@@ -72,15 +73,37 @@ namespace ATrade.CalculateModel
 
 
         public StockFun(CalCurrent pool)
-            :base(pool)
+            : base(pool)
         {
             CurrStockDataCalPool = (pool.RuntimeParam as StockDataCalPool);
         }
 
-        public StockDataCalPool CurrStockDataCalPool 
-        { 
-            get; 
-            set; 
+        public StockDataCalPool CurrStockDataCalPool
+        {
+            get;
+            set;
+        }
+
+        public List<LJC.Com.StockService.Contract.SCRResult> GetSCR()
+        {
+            var key = "___scr___";
+            if (!CalCurrent.VarDataPool.ContainsKey(key))
+            {
+                var list = ESBClient.DoSOARequest2<LJC.Com.StockService.Contract.GetSCRResponse>(LJC.Com.StockService.Contract.Consts.ServiceNo,
+                    LJC.Com.StockService.Contract.Consts.FunID_GetSCR, new LJC.Com.StockService.Contract.GetSCRRequest
+                    {
+                        InnerCode = CurrStockDataCalPool.Stock.StockCode,
+                        Begin = this.StockQuotes.First().Time,
+                        End = this.StockQuotes.Last().Time
+                    }).SCRResults;
+
+                CalCurrent.VarDataPool.Add(key, new CalResult
+                {
+                    Result = list
+                });
+            }
+            var scrlist = this.CalCurrent.VarDataPool[key].Result as List<LJC.Com.StockService.Contract.SCRResult>;
+            return scrlist;
         }
     }
 }

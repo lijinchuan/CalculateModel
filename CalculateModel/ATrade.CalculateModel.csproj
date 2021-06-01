@@ -48,9 +48,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\GitHub\ATrade3.0\ATUI2.0\ATradeUI2.0\bin\Release\ATrade.Quote.dll</HintPath>
     </Reference>
+    <Reference Include="LJC.Com.StockService.Contract">
+      <HintPath>..\DLL\LJC.Com.StockService.Contract.dll</HintPath>
+    </Reference>
     <Reference Include="LJC.FrameWork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\LJC.FrameWork\LJC.FrameWork\bin\Release\LJC.FrameWork.dll</HintPath>
+    </Reference>
+    <Reference Include="LJC.FrameWork.SOA">
+      <HintPath>..\..\LJC.FrameWork\LJC.FrameWork.SOA\bin\Release\LJC.FrameWork.SOA.dll</HintPath>
     </Reference>
     <Reference Include="Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -91,6 +97,8 @@
     <Compile Include="StockFunction\Min.cs" />
     <Compile Include="StockFunction\Profit.cs" />
     <Compile Include="StockFunction\SAR.cs" />
+    <Compile Include="StockFunction\SCR70.cs" />
+    <Compile Include="StockFunction\SCR90.cs" />
     <Compile Include="StockFunction\StockFun.cs" />
     <Compile Include="StockFunction\Sum.cs" />
     <Compile Include="StockFunction\Test.cs" />

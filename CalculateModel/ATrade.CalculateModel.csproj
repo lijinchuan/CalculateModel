@@ -101,6 +101,7 @@
     <Compile Include="StockFunction\SCR90.cs" />
     <Compile Include="StockFunction\StockCode.cs" />
     <Compile Include="StockFunction\StockFun.cs" />
+    <Compile Include="StockFunction\StockName.cs" />
     <Compile Include="StockFunction\Sum.cs" />
     <Compile Include="StockFunction\Test.cs" />
     <Compile Include="StockFunction\Today.cs" />

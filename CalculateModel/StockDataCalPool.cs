@@ -55,6 +55,8 @@ namespace ATrade.CalculateModel
             CalSignFactory.Register("WeekVol", typeof(WeekVol));
             CalSignFactory.Register("SCR70", typeof(SCR70));
             CalSignFactory.Register("SCR90", typeof(SCR90));
+            CalSignFactory.Register("stockcode", typeof(StockCode));
+            CalSignFactory.Register("stockname", typeof(StockName));
         }
 
         private bool _isTestMode = false;

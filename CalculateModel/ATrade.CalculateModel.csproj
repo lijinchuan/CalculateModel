@@ -42,11 +42,11 @@
   <ItemGroup>
     <Reference Include="ATrade.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\GitHub\ATrade3.0\ATUI2.0\ATradeUI2.0\bin\Release\ATrade.Data.dll</HintPath>
+      <HintPath>..\DLL\ATrade.Data.dll</HintPath>
     </Reference>
     <Reference Include="ATrade.Quote, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\GitHub\ATrade3.0\ATUI2.0\ATradeUI2.0\bin\Release\ATrade.Quote.dll</HintPath>
+      <HintPath>..\DLL\ATrade.Quote.dll</HintPath>
     </Reference>
     <Reference Include="LJC.Com.StockService.Contract">
       <HintPath>..\DLL\LJC.Com.StockService.Contract.dll</HintPath>
@@ -60,7 +60,7 @@
     </Reference>
     <Reference Include="Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\GitHub\ATrade3.0\ATUI2.0\ATradeUI2.0\bin\Release\Server.dll</HintPath>
+      <HintPath>..\DLL\Server.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

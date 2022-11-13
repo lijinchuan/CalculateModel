@@ -22,16 +22,15 @@ namespace ATrade.CalculateModel
             {
                 if (CalCurrent.CurrentIndex > -1)
                 {
-                    List<StockCmd_Test> SCTS = (CurrStockDataCalPool.BusiRequest as ATrade.TradeBusiness.TestBusiness).TestStockCmdCach
-                    .ExecuteList();
+                    var cmd = (CurrStockDataCalPool.BusiRequest as ATrade.TradeBusiness.TestBusiness).TestStockCmdCach
+                    .Last();
 
-                    var cmd= SCTS.LastOrDefault();
-                    if (cmd == null||cmd.CmdType==CmdType.sell||cmd.EffDate>CurrQuote.Time)
+                    if (cmd == null || cmd.CmdType == CmdType.sell || cmd.EffDate > CurrQuote.Time)
                     {
                         return new CalResult
                         {
-                            Result=0d,
-                            ResultType=typeof(double)
+                            Result = 0d,
+                            ResultType = typeof(double)
                         };
                     }
 

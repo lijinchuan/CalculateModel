@@ -174,7 +174,7 @@ namespace ATrade.CalculateModel
                         quantity -= trade.BuyQuantity;
                         trade.SellTime = test.EffDate;
                         trade.SellPrice = test.Price;
-                        trade.Cost += test.Cost;
+                        //trade.Cost += test.Cost;
                         trade.Rate=((trade.SellPrice-trade.BuyPrice)*trade.BuyQuantity-trade.Cost)/(trade.BuyPrice*trade.BuyQuantity);
                         x--;
                         result.TradeTimes++;

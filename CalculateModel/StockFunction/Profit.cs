@@ -22,10 +22,15 @@ namespace ATrade.CalculateModel
             {
                 if (CalCurrent.CurrentIndex > -1)
                 {
-                    var cmd = (CurrStockDataCalPool.BusiRequest as ATrade.TradeBusiness.TestBusiness).TestStockCmdCach
-                    .Last();
+                    var cmds = (CurrStockDataCalPool.BusiRequest as ATrade.TradeBusiness.TestBusiness).TestStockCmdCach
+                    .Last(p => p.CmdType == CmdType.buy && p.EffDate <= CurrQuote.Time).ToList();
 
-                    if (cmd == null || cmd.CmdType == CmdType.sell || cmd.EffDate > CurrQuote.Time)
+                    //if (CurrQuote.Time > DateTime.Parse("2020/03/12") && CurrQuote.Time <= DateTime.Parse("2020/03/31"))
+                    //{
+
+                    //}
+
+                    if (!cmds.Any())
                     {
                         return new CalResult
                         {
@@ -34,10 +39,21 @@ namespace ATrade.CalculateModel
                         };
                     }
 
+                    var costPrice = 0d;
+                    if (cmds.Count > 1)
+                    {
+                        var total = cmds.Sum(p => p.Quantity) * .1;
+                        costPrice = cmds.Sum(p => p.Price * (p.Quantity / total));
+                    }
+                    else
+                    {
+                        costPrice = cmds.First().Price;
+                    }
+
                     return new CalResult
                     {
                         ResultType=typeof(double),
-                        Result=(CurrQuote.Close- cmd.Price)*100/cmd.Price
+                        Result=(CurrQuote.Close- costPrice)*100/costPrice
                     };
                     
                 }

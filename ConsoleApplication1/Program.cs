@@ -127,7 +127,10 @@ LC:REF(CLOSE,1);
 RSI1:SMA(MAX(CLOSE-LC,0),6,1)/SMA(ABS(CLOSE-LC),6,1)*100;
 RSI2:SMA(MAX(CLOSE-LC,0),12,1)/SMA(ABS(CLOSE-LC),12,1)*100;
 RSI3:SMA(MAX(CLOSE-LC,0),24,1)/SMA(ABS(CLOSE-LC),24,1)*100;
-chooseresult:IF date('2021-05-28')=tradetime AND H>HF AND UP>TEETH AND TEETH>DOWN AND SCR70<=10 AND SCR90<=10 THEN choose END";
+AC4:REF(AC,5)>REF(AC,4) and REF(AC,4)<REF(AC,3) and REF(AC,3)<REF(AC,2) AND REF(AC,2)<REF(AC,1) AND REF(AC,1)<AC and REF(AC,4)<0 AND (REF(RSI1,1)<=20 OR RSI1<=20);
+B0:IF AC4 or (H>HF AND UP>TEETH AND TEETH>DOWN) OR ((AO<=0 AND REF(AO,1)<REF(AO,2) AND MFI<REF(MFI,1)*0.9 AND V>=REF(V,1)*1.1) and RSI1<20) THEN TRUE ELSE FALSE END;
+S0:IF (REF(LF,1)>0 AND LF=0) OR ((REF(UP,1)<UP AND AO>0 AND REF(AO,1)>REF(AO,2) AND (MFI<=REF(MFI,1)*0.9 AND V>=REF(V,1)*1.1))) THEN TRUE ELSE F END;
+IF Profit>=-5 AND B0 AND NOT S0 THEN BUY('buy') ELSE IF Profit<-5 OR (NOT B0 AND S0) THEN SELL('sell') END END;";
             //            string code = @"N:13;
             //N1:8;
             //WR1:100*(HHV(HIGH,N)-CLOSE)/(HHV(HIGH,N)-LLV(LOW,N));
@@ -144,7 +147,7 @@ chooseresult:IF date('2021-05-28')=tradetime AND H>HF AND UP>TEETH AND TEETH>DOW
 
                 //Console.WriteLine(sw.ElapsedMilliseconds);
 
-                express.CallResult(pool);
+                var result= express.CallResult(pool);
                 var ttt = pool.GetTestResult();
             }
             sw.Stop();

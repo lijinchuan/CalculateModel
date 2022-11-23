@@ -59,8 +59,8 @@ namespace ATrade.CalculateModel
                 }
 
                 object[] results = this.CurrStockDataCalPool.Quotes.Select(q =>
-                    (object)0d
-                    ).ToList().ToArray();
+                    CalResult.DelayCalResult
+                    ).ToArray();
 
                 return new CalResult
                 {

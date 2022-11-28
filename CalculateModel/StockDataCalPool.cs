@@ -36,6 +36,8 @@ namespace ATrade.CalculateModel
             CalSignFactory.Register("open", typeof(O));
             CalSignFactory.Register("profit", typeof(Profit));
             CalSignFactory.Register("lost", typeof(Profit));
+            CalSignFactory.Register("stopprofit", typeof(StopEarn));
+            CalSignFactory.Register("stopearn", typeof(StopEarn));
             CalSignFactory.Register("ref", typeof(REF));
             CalSignFactory.Register("sar", typeof(SAR));
             CalSignFactory.Register("sma", typeof(SMA));

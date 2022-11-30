@@ -72,16 +72,7 @@ namespace ATrade.CalculateModel
             {
                 if (CalCurrent.CurrentIndex == -1)
                 {
-                    double profitRate = 0;
-                    if (this.CurrStockDataCalPool.BusiRequest != null)
-                    {
-                        var hold = this.CurrStockDataCalPool.BusiRequest.QueryHolds()
-                            .FirstOrDefault(p => p.StockCode.Equals(this.CurrStockDataCalPool.Stock.StockCode));
-                        if (hold != null)
-                        {
-                            profitRate = hold.BuyProfitLost * 100 / hold.BuyCost;
-                        }
-                    }
+                    double profitRate = GetNowProfit();
 
                     object[] results = this.CurrStockDataCalPool.Quotes.Select(q =>
                     {
@@ -113,16 +104,7 @@ namespace ATrade.CalculateModel
                     }
                     else
                     {
-                        double profitRate = 0;
-                        if (this.CurrStockDataCalPool.BusiRequest != null)
-                        {
-                            var hold = this.CurrStockDataCalPool.BusiRequest.QueryHolds()
-                                .FirstOrDefault(p => p.StockCode.Equals(this.CurrStockDataCalPool.Stock.StockCode));
-                            if (hold != null)
-                            {
-                                profitRate = hold.BuyProfitLost * 100 / hold.BuyCost;
-                            }
-                        }
+                        double profitRate = GetNowProfit();
                         return new CalResult
                         {
                             ResultType=typeof(double),
@@ -130,6 +112,22 @@ namespace ATrade.CalculateModel
                         };
                     }
                 }
+            }
+
+            double GetNowProfit()
+            {
+                double profitRate = 0;
+                if (this.CurrStockDataCalPool.BusiRequest != null)
+                {
+                    var hold = this.CurrStockDataCalPool.BusiRequest.QueryHolds()
+                        .FirstOrDefault(p => p.StockCode.Equals(this.CurrStockDataCalPool.Stock.StockCode));
+                    if (hold != null)
+                    {
+                        profitRate = hold.BuyProfitLost * 100 / hold.BuyCost;
+                    }
+                }
+
+                return profitRate;
             }
         }
 

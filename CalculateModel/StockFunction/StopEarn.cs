@@ -88,7 +88,70 @@ namespace ATrade.CalculateModel.StockFunction
             }
             else
             {
-                throw new NotImplementedException();
+                if (CalCurrent.CurrentIndex == -1)
+                {
+                    object[] results = this.CurrStockDataCalPool.Quotes.Select(q =>
+                    {
+                        return (object)0d;
+                    }).ToArray();
+
+                    double stopearnrate = GetStopEarn();
+                    results[0] = stopearnrate;
+
+                    return new CalResult
+                    {
+                        Results = results,
+                        ResultType = typeof(double)
+                    };
+                }
+                else
+                {
+                    if (CalCurrent.CurrentIndex > 0)
+                    {
+                        return new CalResult
+                        {
+                            Result = 0d,
+                            ResultType = typeof(double)
+                        };
+                    }
+                    else
+                    {
+                        return new CalResult
+                        {
+                            ResultType = typeof(double),
+                            Result = GetStopEarn()
+                        };
+                    }
+                }
+
+            }
+
+            double GetStopEarn()
+            {
+                double stopearnrate = 0;
+                if (CurrStockDataCalPool.BusiRequest != null)
+                {
+                    var hold = CurrStockDataCalPool.BusiRequest.QueryHolds().Find(p => p.StockCode == CurrStockDataCalPool.Stock.StockCode);
+                    if (hold != null)
+                    {
+                        var realquote = Server.StockServer.GetRealQuote(this.CurrStockDataCalPool.Stock.StockCode);
+                        if (realquote.Close > hold.PositionCost)
+                        {
+                            var quotes = CurrStockDataCalPool.Quotes.Where(p => p.Time > hold.LastUpdateTime);
+                            if (quotes.Any())
+                            {
+                                var maxClose = quotes.Max(p => p.Close);
+                                if (maxClose > hold.PositionCost)
+                                {
+                                    stopearnrate = (maxClose - CurrQuote.Close) * 100 / maxClose;
+                                }
+
+                                //Console.WriteLine($"{CurrQuote.Time.ToString("yyyy/MM/dd")} stopearn:"+stopearnrate);
+                            }
+                        }
+                    }
+                }
+                return stopearnrate;
             }
         }
 

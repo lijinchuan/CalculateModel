@@ -49,6 +49,10 @@ namespace ATrade.CalculateModel
             }
             else
             {
+                //if (CurrQuote.Time > new DateTime(2018, 6, 26) && CurrQuote.Time < new DateTime(2018, 7, 18))
+                //{
+
+                //}
                 if (StockQuotes.Length > CalCurrent.CurrentIndex + 1)
                 {
                     cmd.EffDate = this.StockQuotes[CalCurrent.CurrentIndex + 1].Time;

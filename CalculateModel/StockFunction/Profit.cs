@@ -42,13 +42,18 @@ namespace ATrade.CalculateModel
                     var costPrice = 0d;
                     if (cmds.Count > 1)
                     {
-                        var total = cmds.Sum(p => p.Quantity) * .1;
+                        var total = cmds.Sum(p => p.Quantity) * 1.0;
                         costPrice = cmds.Sum(p => p.Price * (p.Quantity / total));
                     }
                     else
                     {
                         costPrice = cmds.First().Price;
                     }
+
+                    //if (CurrQuote.Time > new DateTime(2018, 6, 26)&& CurrQuote.Time < new DateTime(2018, 7, 18))
+                    //{
+
+                    //}
 
                     return new CalResult
                     {

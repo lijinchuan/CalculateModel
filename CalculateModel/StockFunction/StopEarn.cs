@@ -45,7 +45,7 @@ namespace ATrade.CalculateModel.StockFunction
                     var stopearnrate = 0d;
                     if (cmds.Count > 1)
                     {
-                        var total = cmds.Sum(p => p.Quantity) * .1;
+                        var total = cmds.Sum(p => p.Quantity) * 1.0;
                         costPrice = cmds.Sum(p => p.Price * (p.Quantity / total));
                     }
                     else

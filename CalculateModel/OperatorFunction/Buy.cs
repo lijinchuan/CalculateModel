@@ -51,17 +51,17 @@ namespace ATrade.CalculateModel
             {
                 if (this.StockQuotes.Length > CalCurrent.CurrentIndex + 1)
                 {
-                    cmd.EffDate = this.StockQuotes[CalCurrent.CurrentIndex + 1].Time;
-                    if (cmd.EffDate == default(DateTime))
-                    {
-                        cmd.EffDate = this.CurrQuote.Time.Date.AddDays(1);
-                    }
-                    if (CalCurrent.CurrentIndex > 60)
-                    {
-                        (CurrStockDataCalPool.BusiRequest as TestBusiness).SetTradeTime(CurrQuote.Time).Order(StockOrderSide.buy, 0, CurrStockDataCalPool.Stock, 0, CurrQuote.Close, false);
-                    }
+                    cmd.EffDate = StockQuotes[CalCurrent.CurrentIndex + 1].Time;
                 }
-               
+                if (cmd.EffDate == default)
+                {
+                    cmd.EffDate = CurrQuote.Time.Date.AddDays(1);
+                }
+                if (CalCurrent.CurrentIndex > 60)
+                {
+                    (CurrStockDataCalPool.BusiRequest as TestBusiness).SetTradeTime(CurrQuote.Time).Order(StockOrderSide.buy, 0, CurrStockDataCalPool.Stock, 0, CurrQuote.Close, false);
+                }
+
             }
 
             CalResult result = new CalResult

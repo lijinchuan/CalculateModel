@@ -157,6 +157,7 @@ namespace ATrade.CalculateModel
                     trade.Cost = test.Cost;
                     trade.CostPrice = test.CostPrice;
                     trade.StockCode = test.StockCode;
+                    trade.FundBalance = test.FundBalance;
                     result.Trades.Add(trade);
                 }
 
@@ -176,6 +177,7 @@ namespace ATrade.CalculateModel
                         quantity -= trade.BuyQuantity;
                         trade.SellTime = test.EffDate;
                         trade.SellPrice = test.Price;
+                        trade.FundBalance = test.FundBalance;
                         //trade.Cost += test.Cost;
                         trade.Rate=((trade.SellPrice-trade.BuyPrice)*trade.BuyQuantity-trade.Cost)/(trade.BuyPrice*trade.BuyQuantity);
                         x--;

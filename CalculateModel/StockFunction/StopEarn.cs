@@ -137,7 +137,7 @@ namespace ATrade.CalculateModel.StockFunction
                         var realquote = Server.StockServer.GetRealQuote(this.CurrStockDataCalPool.Stock.StockCode);
                         if (realquote.Close > hold.PositionCost)
                         {
-                            var quotes = CurrStockDataCalPool.Quotes.Where(p => p.Time > hold.LastUpdateTime);
+                            var quotes = CurrStockDataCalPool.Quotes.Where(p => p.Time > hold.MDate);
                             if (quotes.Any())
                             {
                                 var maxClose = quotes.Max(p => p.Close);

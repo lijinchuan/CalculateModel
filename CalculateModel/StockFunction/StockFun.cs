@@ -64,7 +64,11 @@ namespace ATrade.CalculateModel
         {
             get
             {
-                if (StockQuotes.Length > this.CalCurrent.CurrentIndex)
+                if (CalCurrent.CurrentIndex == -1 && StockQuotes.Any())
+                {
+                    return StockQuotes.Last();
+                }
+                else if (CalCurrent.CurrentIndex > -1 && StockQuotes.Length > this.CalCurrent.CurrentIndex)
                     return StockQuotes[this.CalCurrent.CurrentIndex];
 
                 return null;
